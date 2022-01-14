@@ -37,37 +37,36 @@ public class GameBoard {
         }
     }
 
-    public void startGame(){
-        int count=0;
-        while(true)
-        {
+    public void startGame() {
+        int count = 0;
+        while (true) {
             count++;
-            if(count>boardSize*boardSize){
+            if (count > boardSize * boardSize) {
                 System.out.println("Match is a Draw");
                 break;
             }
 
             Player p = nextTurn.poll();
-            int []pos = getUserInput(p);
+            int[] pos = getUserInput(p);
             int row = pos[0];
             int col = pos[1];
 
-            if(p.getPlayerSymbol()=='X'){
+            if (p.getPlayerSymbol() == 'X') {
                 rowArray[row]++;
                 colArray[col]++;
-                if(row==col){
+                if (row == col) {
                     dlr++;
                 }
-                if(row+col==boardSize-1){
+                if (row + col == boardSize - 1) {
                     drl++;
                 }
-            }else{
+            } else {
                 rowArray[row]--;
                 colArray[col]--;
-                if(row==col){
+                if (row == col) {
                     dlr--;
                 }
-                if(row+col==boardSize-1){
+                if (row + col == boardSize - 1) {
                     drl--;
                 }
             }
@@ -76,8 +75,8 @@ public class GameBoard {
             board[row][col] = p.getPlayerSymbol();
             printBoard();
             System.out.println("Board after the move");
-            if (checkEndGame(row,col)) {
-                System.out.println(p.getPlayerName()+" has won the Game!!");
+            if (checkEndGame(row, col)) {
+                System.out.println(p.getPlayerName() + " has won the Game!!");
                 break;
             }
             nextTurn.offer(p);
